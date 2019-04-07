@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css"> </head>
+
+<body>
+    <div>
+        <h2>Задание №1</h2>
+        <button class="hello" onclick="changeText()">Hello</button>
+    </div>
+    <div class="tagbutton">
+        <h2>Задание №2</h2>
+        <button class="change" onclick="changeTag()">Поменять тэг</button> <b class="textitself">Hello (это тег b)</b> </div>
+    <div>
+        <h2>Задание №3</h2>
+        <button class="changelist" onclick="changeList()">Поменять list</button>
+        <ul>
+            <li>list</li>
+            <li>list</li>
+            <li>list</li>
+            <li>list</li>
+        </ul>
+    </div>
+    <h2>Задание №4</h2>
+    <div class="calc">
+        <input type="text" class="inputtext" id="input1" value="5"> <span>?</span>
+        <input type="text" class="inputtext" id="input2" value="8"> = <span id="result">результат</span>
+        <br>
+        <button class="sign" onclick="summ()">+</button>
+        <button class="sign" onclick="sub()">-</button>
+        <button class="sign" onclick="mult()">*</button>
+        <button class="sign" onclick="divis()">/</button>
+    </div>
+    
+    <a href="chess.html" class="chesslink">Шахматы!!!</a>
+    <script>
+        function changeText() {
+            if (document.getElementsByClassName('hello')[0].innerHTML == 'Hello') {
+                document.getElementsByClassName('hello')[0].innerHTML = 'Привет';
+            }
+            else {
+                document.getElementsByClassName('hello')[0].innerHTML = 'Hello';
+            };
+        };
+
+        function changeTag() {
+            del = document.getElementsByClassName("textitself")[0];
+            del.parentNode.removeChild(del);
+            elem = document.createElement('h3');
+            elem.innerHTML = 'Это тэг h3';
+            document.getElementsByClassName("tagbutton")[0].appendChild(elem);
+        };
+
+        function changeList() {
+            console.log(document.querySelectorAll('li'));
+            let list = document.querySelectorAll('li');
+            for (let i = 0; i < list.length; i++) {
+                list[i].innerHTML = String(i + 1) + '.';
+            };
+        };
+
+        function summ() {
+            let a = parseInt(document.getElementById('input1').value);
+            let b = parseInt(document.getElementById('input2').value);
+            document.getElementById('result').innerHTML = a + b;
+        };
+
+        function sub() {
+            let a = parseInt(document.getElementById('input1').value);
+            let b = parseInt(document.getElementById('input2').value);
+            document.getElementById('result').innerHTML = a - b;
+        };
+
+        function mult() {
+            let a = parseInt(document.getElementById('input1').value);
+            let b = parseInt(document.getElementById('input2').value);
+            document.getElementById('result').innerHTML = a * b;
+        };
+
+        function divis() {
+            let a = parseInt(document.getElementById('input1').value);
+            let b = parseInt(document.getElementById('input2').value);
+            document.getElementById('result').innerHTML = a / b;
+        };
+    </script>
+</body>
+
+</html>

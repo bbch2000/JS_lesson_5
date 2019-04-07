@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+</head>
+<body>
+    <button onclick="generateDesc()" class="generate">Сгенерировать доску</button>
+    <button onclick="generateFigures()" class="generate">Сгенерировать фигуры</button>
+    <a href="index.html" class="generate">Назад</a>
+    <script>
+        function generateDesc(){
+            let letters = ['A','B','C','D','E','F','G','H',];
+            let frag = document.createDocumentFragment();
+            var bigblock = document.createElement('div');
+            bigblock.classList.add('bigblock');
+            for (let i=0; i<10; i++) { //создание ряда букв
+                var block = document.createElement('div');
+                block.classList.add('empty');
+                if ((i==0) || (i==9)){
+                    block.innerHTML = '';
+                } else {
+                    block.innerHTML = letters[i-1];
+                };
+                bigblock.appendChild(block);
+            };
+            frag.appendChild(bigblock);
+            var whiteorblack = true;
+            for (let i=0; i<8;i++) {
+                var bigblock = document.createElement('div');
+                bigblock.classList.add('bigblock');
+                for (let j=0; j<10; j++) {
+                    var block = document.createElement('div');
+                    if ((j==0)||(j==9)){
+                        block.classList.add('empty');
+                        block.innerHTML = 8-i;
+                    };
+                    if ((j>0)&&(j<9)){
+                        block.classList.add('gamearea');
+                            if (whiteorblack == true){
+                            block.classList.add('whitesquare');
+                            whiteorblack = false;
+                        } else {
+                            block.classList.add('blacksquare');
+                            whiteorblack = true;
+                        };
+                    }
+                    
+                    bigblock.appendChild(block);
+                };
+                if (whiteorblack == true){
+                            whiteorblack = false;
+                        } else {
+                            whiteorblack = true;
+                        };
+                frag.appendChild(bigblock);
+            };
+                        var bigblock = document.createElement('div');
+            bigblock.classList.add('bigblock');
+            for (let i=0; i<10; i++) { //создание ряда букв
+                var block = document.createElement('div');
+                block.classList.add('empty');
+                if ((i==0) || (i==9)){
+                    block.innerHTML = '';
+                } else {
+                    block.innerHTML = letters[i-1];
+                };
+                bigblock.appendChild(block);
+            };
+            frag.appendChild(bigblock);
+            
+            
+            document.body.appendChild(frag);
+            
+        };
+        function generateFigures() {
+            var area = document.getElementsByClassName('gamearea')
+            console.log(area);
+            var count = 0;
+            for (let i=0;i<8;i++){
+                for (let j=0;j<8;j++){
+                    if ((i==1) || (i==6)){ //ставим пешки
+                        area[count].innerHTML = '<i class="fas fa-chess-pawn"></i>';
+                    };
+                    if (((i==0)||(i==7)) && ((j==0)||(j==7))){ //ставим ладьи
+                        area[count].innerHTML = '<i class="fas fa-chess-rook"></i>';
+                    };
+                    if (((i==0)||(i==7)) && ((j==2)||(j==5))){ //ставим слонов
+                        area[count].innerHTML = '<i class="fas fa-chess-bishop"></i>';
+                    };
+                    if (((i==0)||(i==7)) && ((j==1)||(j==6))){ //ставим коней
+                        area[count].innerHTML = '<i class="fas fa-chess-knight"></i>';
+                    };
+                    if (((i==0)||(i==7)) && (j==3)){ //ставим ферзей
+                        area[count].innerHTML = '<i class="fas fa-chess-queen"></i>';
+                    };
+                    if (((i==0)||(i==7)) && (j==4)){ //ставим королей
+                        area[count].innerHTML = '<i class="fas fa-chess-king"></i>';
+                    };
+                    if ((i==0)||(i==1)){ //красим в черный
+                        area[count].classList.add('blackfigure')
+                    };
+                    if ((i==6)||(i==7)){ //красим в белый
+                        area[count].classList.add('whitefigure')
+                    };
+                    
+                    count++;
+                    
+                };
+            };
+        };            
+    </script>
+</body>
+</html>
